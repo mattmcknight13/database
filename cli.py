@@ -31,8 +31,3 @@ class CLIInterface(BaseDB):
             self.reset_table(args.table)
         elif args.command == "resetdb":
             self.resetdb()
-
-# Example usage:
-if __name__ == "__main__":
-    cli_interface = CLIInterface("mydb.db")
-    cli_interface.run()
