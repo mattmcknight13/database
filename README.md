@@ -13,7 +13,8 @@ python your_script.py set --table users --key john_doe --value '{"age": 25, "cit
 ```
 
 Get a value
-```python your_script.py get --table users --key john_doe
+```
+python your_script.py get --table users --key john_doe
 ```
 
 Target a test database
