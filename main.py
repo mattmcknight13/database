@@ -1,9 +1,10 @@
-from cli import CLIInterface
+from .cli import CLIInterface
+
+main_db_location = "mydb.json"
+test_db_location = "test.json"
 
 if __name__ == "__main__":
-    main_db_location = "mydb.json"
-    test_db_location = "test.json"
-
+    
     cli_interface = CLIInterface(main_db_location, test_db_location)
     cli_interface.run()
 

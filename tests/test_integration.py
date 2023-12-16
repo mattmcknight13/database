@@ -1,5 +1,6 @@
 # tests/test_integration.py
 import os
+import sys
 import pytest
 from ..main import main_db_location, test_db_location
 from ..cli import CLIInterface
@@ -15,13 +16,12 @@ def setup_teardown():
     cli_interface.resetdb(test_db_location)
 
 def test_create_table(setup_teardown):
-    # Arrange
+    # attach setup/teardown
     cli_interface = setup_teardown
 
-    # Act
-    result = cli_interface.run(["create_table", "--table", "test_table"])
-
-    # Assert
+    # run command
+    result = cli_interface.run(["create_table", "--table", "test_table", "--test"])
+    # Assert results
     assert result is True
     assert "test_table" in cli_interface.tables
 

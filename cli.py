@@ -1,6 +1,6 @@
 import argparse
 from typing import List , Optional, Any
-from basedb import BaseDB
+from .basedb import BaseDB
 
 class CLIInterface(BaseDB):
     def __init__(self, location: str, test_location: str) -> None:
@@ -18,23 +18,26 @@ class CLIInterface(BaseDB):
 
     def run(self, args_list: Optional[List[str]] = None) -> Any:
         # Parse the command-line arguments
-        args = self.parser.parse_args(args)
+        args = self.parser.parse_args(args_list)
 
         # Determine the database location based on the --test flag
         db_location = self.test_location if args.test else self.location
 
         # Execute the corresponding command with the specified file path
         if args.command == "create_table":
-            self.create_table(db_location, args.table)
+           return self.create_table(db_location, args.table)
         elif args.command == "set":
-            self.set(db_location, args.table, args.key, args.value)
+           return self.set(db_location, args.table, args.key, args.value)
         elif args.command == "get":
             result = self.get(db_location, args.table, args.key)
             if result is not None:
                 print(result)
         elif args.command == "delete":
-            self.delete(db_location, args.table, args.key)
+           return self.delete(db_location, args.table, args.key)
         elif args.command == "reset_table":
-            self.reset_table(db_location, args.table)
+           return self.reset_table(db_location, args.table)
         elif args.command == "resetdb":
-            self.resetdb(db_location)
+           return self.resetdb(db_location)
+        
+        print(f"Unrecognized command: {args.command}")
+        return False
