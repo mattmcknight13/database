@@ -12,5 +12,11 @@ if __name__ == "__main__":
 # setup .toml file
 # fix create_table (think we need to instanciate different instances based on db)
 # add ability to create multiple tables at once to speed up start steps
+    
+# add forigen key reference to join tables
+# command line interface **
+#  - query language as dumb as possible
+#  - peristance
+#  - actions
 ###
     

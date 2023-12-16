@@ -91,9 +91,3 @@ class BaseDB(object):
         return True
 
 
-# add a update table method
-# add forigen key reference to join tables
-# command line interface **
-#  - query language as dumb as possible
-#  - peristance
-#  - actions
