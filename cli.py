@@ -15,9 +15,9 @@ class CLIInterface(BaseDB):
         self.parser.add_argument("--value", help="Value")
         self.parser.add_argument("--test", action="store_true", help="Use test database")
 
-    def run(self):
+    def run(self, args_list=None):
         # Parse the command-line arguments
-        args = self.parser.parse_args()
+        args = self.parser.parse_args(args_list)
 
         # Determine the database location based on the --test flag
         db_location = self.test_location if args.test else self.location

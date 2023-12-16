@@ -1,5 +1,6 @@
 import json
 import os
+from typing import Dict, Any
 
 class BaseDB(object):
     def __init__(self, location):
@@ -89,5 +90,3 @@ class BaseDB(object):
         self.tables = {}
         self.dumpdb(location)
         return True
-
-
