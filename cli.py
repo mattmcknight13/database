@@ -2,32 +2,38 @@ import argparse
 from basedb import BaseDB
 
 class CLIInterface(BaseDB):
-  def __init__(self, location):
-    super().__init__(location)
+    def __init__(self, location, test_location):
+        super().__init__(location)
+        self.test_location = test_location
 
-    self.parser = argparse.ArgumentParser(description="cli interface for BaseDB.")
-    self.parser.add_argument("command", choices=["create_table", "set", "get", "delete", "reset_table", "resetdb"],
-                             help="Command to execute.")
-    self.parser.add_argument("--table", help="Table name")
-    self.parser.add_argument("--key", help="Key name")
-    self.parser.add_argument("--value", help="Value name")
+        # Create the command-line argument parser
+        self.parser = argparse.ArgumentParser(description="Simple CLI for a basic database.")
+        self.parser.add_argument("command", choices=["create_table", "set", "get", "delete", "reset_table", "resetdb"],
+                                 help="Command to execute")
+        self.parser.add_argument("--table", help="Table name")
+        self.parser.add_argument("--key", help="Key")
+        self.parser.add_argument("--value", help="Value")
+        self.parser.add_argument("--test", action="store_true", help="Use test database")
 
-  def run(self):
+    def run(self):
         # Parse the command-line arguments
         args = self.parser.parse_args()
 
-        # Execute the corresponding command
+        # Determine the database location based on the --test flag
+        db_location = self.test_location if args.test else self.location
+
+        # Execute the corresponding command with the specified file path
         if args.command == "create_table":
-            self.create_table(args.table)
+            self.create_table(db_location, args.table)
         elif args.command == "set":
-            self.set(args.table, args.key, args.value)
+            self.set(db_location, args.table, args.key, args.value)
         elif args.command == "get":
-            result = self.get(args.table, args.key)
+            result = self.get(db_location, args.table, args.key)
             if result is not None:
                 print(result)
         elif args.command == "delete":
-            self.delete(args.table, args.key)
+            self.delete(db_location, args.table, args.key)
         elif args.command == "reset_table":
-            self.reset_table(args.table)
+            self.reset_table(db_location, args.table)
         elif args.command == "resetdb":
-            self.resetdb()
+            self.resetdb(db_location)
