@@ -1,15 +1,15 @@
 import json
 import os
-from typing import Dict, Any
+from typing import Any
 
 class BaseDB(object):
-    def __init__(self, location):
+    def __init__(self, location: str) -> None:
         self.location = os.path.expanduser(location)
         self.tables = {}
         self.load(self.location)
 
     # create location in memory
-    def load(self, location):
+    def load(self, location: str)-> bool:
         if os.path.exists(location):
             self._load(location)
         else:
@@ -17,7 +17,7 @@ class BaseDB(object):
         return True
     
     # load tables into database
-    def _load(self, location):
+    def _load(self, location:str) -> None:
       try:
           with open(location, "r") as file:
               data = json.load(file)
@@ -28,7 +28,7 @@ class BaseDB(object):
           self.tables = {}
 
     # overwrite database
-    def dumpdb(self, location):
+    def dumpdb(self, location: str) -> bool:
         try:
             json.dump(self.tables, open(location, "w+"))
             return True
@@ -37,7 +37,7 @@ class BaseDB(object):
             return False
 
     # create a table in database
-    def create_table(self,location, table_name):
+    def create_table(self,location: str, table_name: str) -> bool:
         if table_name not in self.tables:
             self.tables[table_name] = {}
             self.dumpdb(location)
@@ -47,7 +47,7 @@ class BaseDB(object):
             return False
 
     # add table and dump into database
-    def set(self,location, table_name, key, value):
+    def set(self,location: str, table_name: str, key: str, value: Any) -> bool:
         try:
             if table_name not in self.tables:
                 self.create_table(location, table_name)
@@ -59,7 +59,7 @@ class BaseDB(object):
             return False
 
     # get key value from table
-    def get(self,location, table_name, key):
+    def get(self,location: str, table_name: str, key: str) -> Any:
         try:
             return self.tables[table_name][key]
         except KeyError:
@@ -67,7 +67,7 @@ class BaseDB(object):
             return None
 
     # delete key value from table
-    def delete(self,location, table_name, key):
+    def delete(self,location: str, table_name: str, key: str) -> bool:
         if table_name in self.tables and key in self.tables[table_name]:
             del self.tables[table_name][key]
             self.dumpdb(location)
@@ -76,7 +76,7 @@ class BaseDB(object):
             return False
 
     # empty table in database
-    def reset_table(self,location, table_name):
+    def reset_table(self,location: str, table_name: str) -> bool:
         if table_name in self.tables:
             self.tables[table_name] = {}
             self.dumpdb(location)
@@ -86,7 +86,7 @@ class BaseDB(object):
             return False
 
     #  empty database
-    def resetdb(self, location):
+    def resetdb(self, location: str) -> bool:
         self.tables = {}
         self.dumpdb(location)
         return True
