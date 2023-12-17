@@ -1,6 +1,4 @@
 # tests/test_integration.py
-import os
-import sys
 import pytest
 from ..main import main_db_location, test_db_location
 from ..cli import CLIInterface

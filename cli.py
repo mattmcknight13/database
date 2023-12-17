@@ -1,6 +1,6 @@
 import argparse
 from typing import List , Optional, Any
-from .basedb import BaseDB
+from basedb import BaseDB
 
 class CLIInterface(BaseDB):
     def __init__(self, location: str, test_location: str) -> None:

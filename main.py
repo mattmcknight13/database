@@ -1,4 +1,4 @@
-from .cli import CLIInterface
+from cli import CLIInterface
 
 main_db_location = "mydb.json"
 test_db_location = "test.json"
