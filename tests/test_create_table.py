@@ -10,7 +10,6 @@ def setup_teardown():
     
     yield cli_interface  # The test runs here
     
-    # Teardown: Reset the test database after the test
     cli_interface.resetdb(test_db_location)
 
 def test_create_table(setup_teardown):

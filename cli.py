@@ -1,6 +1,6 @@
 import argparse
 from typing import List , Optional, Any
-from basedb import BaseDB
+from .basedb import BaseDB
 
 class CLIInterface(BaseDB):
     def __init__(self, location: str, test_location: str) -> None:
@@ -32,6 +32,7 @@ class CLIInterface(BaseDB):
             result = self.get(db_location, args.table, args.key)
             if result is not None:
                 print(result)
+            return result
         elif args.command == "delete":
            return self.delete(db_location, args.table, args.key)
         elif args.command == "reset_table":
