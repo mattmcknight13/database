@@ -21,3 +21,8 @@ if __name__ == "__main__":
 #  - actions
 ###
     
+### Issues to fix
+# testing isn't working getting import issues
+# database information is hanging over been main run and --test flag duplicating data across databases 
+###
+    
