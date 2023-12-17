@@ -1,6 +1,6 @@
 import pytest
-from ..main import main_db_location, test_db_location
-from ..cli import CLIInterface
+from ...main import main_db_location, test_db_location
+from ...cli import CLIInterface
 
 @pytest.fixture
 def setup_teardown():
