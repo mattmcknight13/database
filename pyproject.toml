@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "database"
+name = "roundtable_db"
 version = "0.1.0"
 description = "a simple learning project to create a database from scratch"
 authors = ["Matthew McKnight"]
