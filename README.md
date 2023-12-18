@@ -21,3 +21,14 @@ Target a test database
 ```
 python your_script.py set --table users --key jane_doe --value '{"age": 30, "city": "San Francisco"}' --test
 ```
+Commands to run tests:
+
+Unit tests
+```
+pytest tests/unit/test.py
+```
+
+Integration tests
+```
+pytest tests/integration
+```
