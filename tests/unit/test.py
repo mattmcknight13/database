@@ -7,10 +7,10 @@ class TestBaseDB(unittest.TestCase):
     def setUp(self):
         # Create a temporary directory for testing
         self.temp_dir = tempfile.mkdtemp()
-        self.main_db_location = os.path.join(self.temp_dir, "test_db.json")
+        self.test_db_location = os.path.join(self.temp_dir, "test_db.json")
 
         # Create an instance of your database with the temporary location
-        self.db = BaseDB(self.main_db_location)
+        self.db = BaseDB(self.test_db_location)
 
     def tearDown(self):
         # Remove the temporary directory and its contents
@@ -24,17 +24,17 @@ class TestBaseDB(unittest.TestCase):
 
     def test_create_table(self):
         table_name = "test_table"
-        self.assertTrue(self.db.create_table(self.main_db_location, table_name))
+        self.assertTrue(self.db.create_table(self.test_db_location, table_name))
 
     def test_set_and_get(self):
         table_name = "test_table"
         key = "test_key"
         value = "test_value"
 
-        self.db.create_table(self.main_db_location, table_name)
-        self.assertTrue(self.db.set(self.main_db_location, table_name, key, value))
+        self.db.create_table(self.test_db_location, table_name)
+        self.assertTrue(self.db.set(self.test_db_location, table_name, key, value))
 
-        retrieved_value = self.db.get(self.main_db_location, table_name, key)
+        retrieved_value = self.db.get(self.test_db_location, table_name, key)
         self.assertEqual(retrieved_value, value)
 
     # Add more test cases as needed
