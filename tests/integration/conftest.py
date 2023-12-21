@@ -1,7 +1,7 @@
 # tests/conftest.py
 import pytest
-from ...main import main_db_location, test_db_location
-from ...cli import CLIInterface  # Replace with the actual module containing CLIInterface
+from main import main_db_location, test_db_location
+from cli import CLIInterface  # Replace with the actual module containing CLIInterface
 
 @pytest.fixture
 def setup_teardown():

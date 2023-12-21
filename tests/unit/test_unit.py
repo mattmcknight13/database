@@ -1,7 +1,7 @@
 import unittest
 import tempfile
 import os
-from ...basedb import BaseDB
+from basedb import BaseDB
 
 class TestBaseDB(unittest.TestCase):
     def setUp(self):
