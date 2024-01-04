@@ -1,6 +1,6 @@
 import json
 import os
-from typing import Any
+from typing import Any, Optional
 
 class BaseDB(object):
     def __init__(self, location: str) -> None:
@@ -58,10 +58,17 @@ class BaseDB(object):
             print("[X] Error Saving Values to Table : " + str(e))
             return False
 
-    # get key value from table
-    def get(self,location: str, table_name: str, key: str) -> Any:
+    # get key value from table with optional filters
+    def get(self, location: str, table_name: str, key: str, filters: Optional[dict] = None) -> Any:
         try:
-            return self.tables[table_name][key]
+            value = self.tables[table_name][key]
+
+            if filters:
+                for filter_key, filter_value in filters.items():
+                    if value.get(filter_key) != filter_value:
+                        return None
+            
+            return value
         except KeyError:
             print(f"No value can be found for key '{key}' in table '{table_name}'.")
             return None

@@ -29,6 +29,9 @@ class CLIInterface(basedb.BaseDB):
         elif args.command == "set":
            return self.set(db_location, args.table, args.key, args.value)
         elif args.command == "get":
+            filters = {}
+            if args.key:
+                filters[args.key] = args.value
             result = self.get(db_location, args.table, args.key)
             if result is not None:
                 print(result)
